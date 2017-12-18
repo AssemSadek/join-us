@@ -1,0 +1,27 @@
+{
+  "name": "joinus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AssemSadek/join-us.git"
+  },
+  "author": "Assem & Lana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AssemSadek/join-us/issues"
+  },
+  "homepage": "https://github.com/AssemSadek/join-us#readme",
+  "dependencies": {
+    "client-sessions": "^0.8.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mysql": "^2.15.0"
+  }
+}
