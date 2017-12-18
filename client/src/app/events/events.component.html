@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mb-5">All Events</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4" *ngFor="let event of events">
+            <div class="card">
+                <img class="card-img-top" src="{{ event.photo }}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ event.eventName }}</h4>
+                    <p class="card-text">{{ event.eventDescription }}</p>
+                    <a href="#" class="btn btn-primary">View</a>
+                    <a href="#" class="btn btn-primary" *ngIf="isLoggedIn | async">Attend</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

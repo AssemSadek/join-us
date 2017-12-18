@@ -1,0 +1,131 @@
+<div class="col-lg-6 col-sm-6">
+  <div class="card hovercard">
+    <div class="card-background">
+      <img class="card-bkimg" alt="" src="http://www.alexnovy.com/wp-content/uploads/2012/08/MrsMacquarieChairOpera.jpg">
+    </div>
+    <div class="useravatar">
+      <img alt="" src="http://www.alexnovy.com/wp-content/uploads/2012/08/MrsMacquarieChairOpera.jpg">
+    </div>
+    <div class="card-info"> <span class="card-title">{{ userName | async }}</span>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" href="#eventsCreated" role="tab" data-toggle="tab">Events Created</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#eventsAttended" role="tab" data-toggle="tab">Events Attended</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#currentEvents" role="tab" data-toggle="tab">Current Events</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#following" role="tab" data-toggle="tab">Following</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#followers" role="tab" data-toggle="tab">Followers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#biography" role="tab" data-toggle="tab">Biography</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="eventsCreated">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-sm-4" *ngFor="let event of eventsCreated">
+          <div class="card">
+            <img class="card-img-top" src="{{ event.photo }}" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{ event.eventName }}</h4>
+              <p class="card-text">{{ event.eventDescription }}</p>
+              <p class="card-text">{{ event.eventDate }}</p>
+              <a href="#" class="btn btn-primary">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
+  <div role="tabpanel" class="tab-pane fade" id="eventsAttended">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-sm-4" *ngFor="let event of eventsAttended">
+          <div class="card">
+            <img class="card-img-top" src="{{ event.photo }}" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{ event.eventName }}</h4>
+              <p class="card-text">{{ event.eventDescription }}</p>
+              <p class="card-text">{{ event.eventDate }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane fade" id="currentEvents">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-sm-4" *ngFor="let event of currentEvents">
+          <div class="card">
+            <img class="card-img-top" src="{{ event.photo }}" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{ event.eventName }}</h4>
+              <p class="card-text">{{ event.eventDescription }}</p>
+              <p class="card-text">{{ event.eventDate }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane fade" id="following">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of following">
+          <td>{{ f.fullName }}</td>
+          <td>{{ f.username }}</td>
+          <td>{{ f.email }}</td>
+          <td><a href="">Unfollow</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div role="tabpanel" class="tab-pane fade" id="followers">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of followers">
+          <td>{{ f.fullName }}</td>
+          <td>{{ f.username }}</td>
+          <td>{{ f.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div role="tabpanel" class="tab-pane fade" id="biography">Biography</div>
+</div>

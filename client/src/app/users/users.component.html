@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mb-5">All Users</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4" *ngFor="let user of users | async">
+            <div class="card">
+                <img class="card-img-top" src="{{user.Image}}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ user.FullName}}</h4>
+                    <p class="card-text">{{ user.UserName}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
