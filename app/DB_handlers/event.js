@@ -59,7 +59,7 @@ var updateEventInfo = function(req,res){
 };
 
 var deleteEvent = function(req,res){
-  con.query("Delete from event where event.ID = ?"
+  con.query("Delete FROM event where event.ID = ?"
   ,[req.params.id]
     ,function(err,result){
       if(err){
@@ -101,6 +101,90 @@ var unattendEvent = function(req,res){
   });
 };
 
+var getEventParticipants = function(req,res){
+  con.query("SELECT U.UserName,U.Image FROM User U,Attends A where U.UserName = A.UN and A.EID=?"
+  ,[req.params.id]
+  ,function(err,result){
+    if(err){
+      var resObject = {};
+      resObject.m = "can't unattend";
+    }
+    else {
+      res.send(result);
+    }
+  });
+};
+
+var addComment = function (req,res) {
+  con.query("Insert into comment(Content,CUN,CEID) values(?,?,?);"
+  ,[req.body.text, req.userCookie.userName, req.params.id]
+  ,function(err,result){
+    if(err){
+        var resObject = {};
+        resObject.m = "can't unattend";
+      }
+    else {
+      res.send(result);
+    }
+  });
+};
+
+var getEventComments = function (req,res) {
+  con.query("SELECT * FROM comment EID =? ORDER BY ID DESC"
+  ,[req.params.id]
+  ,function(err,result){
+    if(err){
+        var resObject = {};
+        resObject.m = "can't unattend";
+      }
+    else {
+      res.send(result);
+    }
+  });
+};
+
+var addReport = function (req,res) {
+  con.query("Insert into report(Problem,RUN,REID) values(?,?,?);"
+  ,[req.body.text, req.userCookie.userName, req.params.id]
+  ,function(err,result){
+    if(err){
+        var resObject = {};
+        resObject.m = "can't unattend";
+      }
+    else {
+      res.send(result);
+    }
+  });
+};
+
+
+var getEventReports = function (req,res) {
+  con.query("SELECT * FROM report REID =? ORDER BY ID DESC"
+  ,[req.params.id]
+  ,function(err,result){
+    if(err){
+        var resObject = {};
+        resObject.m = "can't unattend";
+      }
+    else {
+      res.send(result);
+    }
+  });
+};
+
+var GetAllReports = function (req,res) {
+  con.query("SELECT E.Title, R.RUN, R.Problem FROM Report R Event E WHERE E.ID = R.REID  ORDER BY R.ID DESC"
+  ,function(err,result){
+      if(err){
+          var resObject = {};
+          resObject.m = "can't unattend";
+        }
+      else {
+        res.send(result);
+      }
+    });
+  };
+
 
   module.exports = {
     getAllEvents: getAllEvents,
@@ -111,5 +195,13 @@ var unattendEvent = function(req,res){
     deleteEvent : deleteEvent,
 
     attendEvent : attendEvent,
-    unattendEvent : unattendEvent
+    unattendEvent : unattendEvent,
+    getEventParticipants : getEventParticipants,
+
+    addcomment: addComment,
+    getEventComments : getEventComments,
+    addReport: addReport,
+    getEventReports : getEventReports,
+    getAllReports : getAllReports
+
   };

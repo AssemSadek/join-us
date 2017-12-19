@@ -77,6 +77,8 @@ var getUserInfo = function(req,res){
   con.query("SELECT Username,Email,Fullname,Gender,Birthdate,Image,Type FROM User WHERE Username = ?"
   ,[req.params.username]
   ,function(err,result){
+    console.log(req.params.username);
+    console.log(result);
     if(err) {
       console.log(err);
       res.status(500).send(err);
