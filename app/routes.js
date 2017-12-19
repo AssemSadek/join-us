@@ -36,12 +36,13 @@ module.exports.route = function(app){
     app.get("/attendEvent/:id", event.attendEvent);
     app.delete("/unattendEvent/:id", event.unattendEvent);
     app.get("/getEventParticipants/:id", event.getEventParticipants);
-
-    app.post("addcomment", ddComment);
-    app.get("getEventComments/:id", getEventComments);
-    app.post("addReport", addReport);
-    app.get("getEventReport/:id", getEventReport);
-    app.getAllReports("getAllReports", getAllReports);
+    /*
+    app.post("addcomment", event.addComment);
+    app.get("getEventComments/:id", event.getEventComments);
+    app.post("addReport", event.addReport);
+    app.get("getEventReport/:id", event.getEventReport);
+    app.getAllReports("getAllReports", event.getAllReports);
+    */  
 
 
 };

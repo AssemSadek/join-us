@@ -21,12 +21,12 @@ export class AuthenticationService {
      * @param {string} password The password the user logged in with.
      */
     public authenticate(username: string, password: string): Observable<any> {
-        return this.http.post('/login',[{"username": username, "password": password}])
-                        .map(res => res.json())
-                        .do(data => {if (data["m"] == null) {
+        return this.http.post('/login',{"username": username, "password": password})
+                        .map(res => res.arrayBuffer().byteLength > 0 ? res.json : null)
+                        .do(data => {if (data != null) {
                                         this.loginState.next(true);
-                                        this.userName.next(username)
-                                    }});
+                                        this.userName.next(username);
+                                        }});
     }
 
     /**

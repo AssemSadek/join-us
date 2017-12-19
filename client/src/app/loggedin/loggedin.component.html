@@ -41,14 +41,14 @@
   <div role="tabpanel" class="tab-pane fade in active" id="eventsCreated">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-sm-4" *ngFor="let event of eventsCreated">
+        <div class="col-sm-4" *ngFor="let event of eventsCreated | async">
           <div class="card">
-            <img class="card-img-top" src="{{ event.photo }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ event.Image }}" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">{{ event.eventName }}</h4>
-              <p class="card-text">{{ event.eventDescription }}</p>
-              <p class="card-text">{{ event.eventDate }}</p>
-              <a href="#" class="btn btn-primary">Edit</a>
+              <h4 class="card-title">{{ event.Title }}</h4>
+              <p class="card-text">{{ event.StartDate }}</p><br>
+              <p class="card-text">{{ event.EndDate }}</p>
+              <a href="#" class="btn btn-primary">Edit Event</a>
             </div>
           </div>
         </div>
@@ -59,13 +59,13 @@
   <div role="tabpanel" class="tab-pane fade" id="eventsAttended">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-sm-4" *ngFor="let event of eventsAttended">
+        <div class="col-sm-4" *ngFor="let event of eventsAttended | async">
           <div class="card">
-            <img class="card-img-top" src="{{ event.photo }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ event.Image }}" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title">{{ event.eventName }}</h4>
-              <p class="card-text">{{ event.eventDescription }}</p>
-              <p class="card-text">{{ event.eventDate }}</p>
+              <h4 class="card-title">{{ event.Title }}</h4>
+              <p class="card-text">{{ event.StartDate }}</p>
+              <p class="card-text">{{ event.EndDate }}</p>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@
   <div role="tabpanel" class="tab-pane fade" id="information">
     <form>
       <div class="form-group">
-        <label ><b>Full Name: </b>{{ (userInfo.Fullname) ? userInfo.Fullname : msg}}</label>
+        <label ><b>Full Name: </b>{{ (userInfo.FullName) ? userInfo.FullName : msg}}</label>
       </div>
       <div class="form-group">
         <label ><b>Username: </b>{{ (userInfo.Username) ? userInfo.Username : msg}}</label>

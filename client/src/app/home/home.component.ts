@@ -20,12 +20,10 @@ export class HomeComponent implements OnInit {
 
     logIn(username: string, password: string) {
         this.dummy = this.authService.authenticate(username, password);
-        this.dummy.subscribe(data => {if (data["m"] == null) {
-                                            this.router.navigate(['loggedin']);
-                                        }
-                                        else {
-                                            console.log("ERROOOR");
-                                        };
-                                    });
+        this.dummy.subscribe(isLoggedIn => {if (isLoggedIn) 
+                                                this.router.navigate(['loggedin']);
+                                            else
+                                                console.log("ERROR");
+                                            });
     }
 }

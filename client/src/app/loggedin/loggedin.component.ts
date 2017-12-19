@@ -14,8 +14,8 @@ export class LoggedinComponent implements OnInit {
   public userInfo = null;
   res: string;
   public msg = "Not Specified";
-  eventsCreated = null;
-  eventsAttended = null;
+  public eventsCreated: Observable<any>;
+  public eventsAttended: Observable<any>;
   currentEvents = null;
   following = null;
   followers = null;
@@ -25,37 +25,6 @@ export class LoggedinComponent implements OnInit {
 
   ngOnInit() {
     this._initState();
-    this.eventsCreated = [{
-      "photo": "https://data.whicdn.com/images/88350461/large.jpg",
-      "eventName": "Coldplay",
-      "eventDescription": "bla bla bla bla",
-      "eventDate": "18/12/2017"
-    },
-    {
-      "photo": "https://metrouk2.files.wordpress.com/2017/08/pri_50902887.jpg?w=748&h=498&crop=1",
-      "eventName": "Christmas",
-      "eventDescription": "bla bla bla bla",
-      "eventDate": "18/12/2017"
-    },
-    {
-      "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
-      "eventName": "Lana Del Rey",
-      "eventDescription": "bla bla bla bla",
-      "eventDate": "18/12/2017"
-    },
-    {
-      "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
-      "eventName": "Lana Del Rey",
-      "eventDescription": "bla bla bla bla",
-      "eventDate": "18/12/2017"
-    }];
-
-    this.eventsAttended = [{
-      "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
-      "eventName": "Lana Del Rey",
-      "eventDescription": "bla bla bla bla",
-      "eventDate": "10/12/2017"
-    }];
 
     this.currentEvents = [{
       "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
@@ -122,6 +91,16 @@ export class LoggedinComponent implements OnInit {
     this.userName = this._authService.getUserName();
     this.userName.subscribe(data => this.res = data);
     this.userInfoObs = this.coreService.getUserInfo(this.res);
-    this.userInfoObs.subscribe(data => {this.userInfo = data; console.log(this.userInfo);});
+    this.userInfoObs.subscribe(data => this.userInfo = data);
+    this.eventsCreated = this.getEventsCreated(this.res);
+    this.eventsAttended = this.getEventsAttended(this.res);
+  }
+
+  getEventsCreated(username: string): Observable<any> {
+    return this.coreService.getEventsCreated(username);
+  }
+
+  getEventsAttended(username: string): Observable<any> {
+    return this.coreService.getEventsAttended(username);
   }
 }

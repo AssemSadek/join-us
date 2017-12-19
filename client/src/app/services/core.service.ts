@@ -21,4 +21,12 @@ export class CoreService {
         return this.http.get('/users/' + username).map(res => res.json()[0]);
     }
 
+    getEventsCreated(username: string): Observable<any> {
+        return this.http.get('/userEvents/' + username).map(res => res.json());
+    }
+
+    getEventsAttended(username: string): Observable<any> {
+        return this.http.get('/userEventsAttended/' + username).map(res => res.json());
+    }
+
 }

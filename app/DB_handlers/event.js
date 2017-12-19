@@ -193,7 +193,7 @@ var getEventReports = function (req,res) {
   });
 };
 
-var GetAllReports = function (req,res) {
+var getAllReports = function (req,res) {
   con.query("SELECT E.Title, R.RUN, R.Problem FROM Report R Event E WHERE E.ID = R.REID  ORDER BY R.ID DESC"
   ,function(err,result){
     if(err){

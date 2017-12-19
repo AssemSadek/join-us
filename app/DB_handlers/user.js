@@ -34,17 +34,20 @@ var signUp =  function(req,res){
 };
 
 var login = function(req,res){
+  //console.log(req.body.username);
+  //console.log(req.body.password);
   con.query("SELECT Username,Type FROM User WHERE Username = ? and Password = ?"
   ,[req.body.username, req.body.password]
   ,function(err,result) {
+    console.log(result)
     if(err){
       console.log(err);
       res.status(500).send(err);
     }
     else if (result.length == 0) {
-      var resObject = {}
-      resObject.m = "User not found"
-      res.send(resObject);
+      //var resObject = {}
+      //resObject.m = "User not found"
+      res.send(null);
     }
     else {
       req.userCookie.username = result[0].Username;
@@ -56,13 +59,13 @@ var login = function(req,res){
 
 var logout = function(req,res){
 
-  if(!req.AdvanceCookie.username) {
+  if(!req.userCookie.username) {
     resObject = {} 
     resObject.m = "You are not logged in";
     res.send(resObject);
   }
   else {
-    req.AdvanceCookie.reset();
+    req.userCookie.reset();
     resObject = {} 
     resObject.m = "Done";
     res.send(resObject);
@@ -72,8 +75,8 @@ var logout = function(req,res){
 var authenticate = function(req,res){
   var resObject = {username:null,type:null};
   if(req.userCookie.username) {
-      resObject.username = req.AdvanceCookie.username;
-      resObject.type = req.AdvanceCookie.type;
+      resObject.username = req.userCookie.username;
+      resObject.type = req.userCookie.type;
   }
   res.send(resObject);
 };
