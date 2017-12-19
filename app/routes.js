@@ -22,6 +22,8 @@ module.exports.route = function(app){
     app.get("/userEventsFollowing/:username", user.getUserFollowing);
     app.get("/follow/:usernme", user.follow);
     app.delete("/unfollow/:username", user.unfollow);
+    app.get("/banUser/:username", user.banUser);
+    app.get("/unbanUser/:username", user.unbanUser);
    
     //requests for event
     app.get("/events", event.getAllEvents);

@@ -211,22 +211,22 @@ var GetAllReports = function (req,res) {
   });
 };
 
-  module.exports = {
-    getAllEvents: getAllEvents,
+module.exports = {
+  getAllEvents: getAllEvents,
 
-    createEvent : createEvent,
-    getEventInfo : getEventInfo,
-    updateEventInfo : updateEventInfo,
-    deleteEvent : deleteEvent,
+  createEvent : createEvent,
+  getEventInfo : getEventInfo,
+  updateEventInfo : updateEventInfo,
+  deleteEvent : deleteEvent,
 
-    attendEvent : attendEvent,
-    unattendEvent : unattendEvent,
-    getEventParticipants : getEventParticipants,
+  attendEvent : attendEvent,
+  unattendEvent : unattendEvent,
+  getEventParticipants : getEventParticipants,
 
-    addcomment: addComment,
-    getEventComments : getEventComments,
-    addReport: addReport,
-    getEventReports : getEventReports,
-    getAllReports : getAllReports
+  addcomment: addComment,
+  getEventComments : getEventComments,
+  addReport: addReport,
+  getEventReports : getEventReports,
+  getAllReports : getAllReports
 
-  };
+};

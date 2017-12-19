@@ -9,7 +9,7 @@ var getAllUsers = function (req, res) {
     }
     else if (result.length == 0) {
       var resObject = {}
-      resObject.m = "User not found"
+      resObject.m = "No users on website"
       res.send(resObject);
     } 
     else {
@@ -222,6 +222,33 @@ var unfollow = function(req,res){
 };
 
 
+var banUser = function (req,res){
+  con.query("UPDATE user SET Type = \"banned\"  WHERE Username = ? "
+  ,[req.params.username]
+  , function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } 
+    else {
+      res.send(result);
+    }
+  });
+};
+
+var unbanUser = function (req,res){
+  con.query("UPDATE user SET Type = \"normal\"  WHERE Username = ? "
+  ,[req.params.username]
+  , function (err, result) {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } 
+    else {
+      res.send(result);
+    }
+  });
+};
 
 module.exports = {
 
@@ -240,7 +267,9 @@ module.exports = {
   getUserFollowers : getUserFollowers,
   getUserFollowing : getUserFollowing,
   follow : follow,
-  unfollow : unfollow
+  unfollow : unfollow,
+  banUser : banUser,
+  unbanUser : unbanUser
   
 };
   
