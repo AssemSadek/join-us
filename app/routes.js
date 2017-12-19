@@ -28,7 +28,7 @@ module.exports.route = function(app){
     
     app.post("/createEvent", event.createEvent);
     app.get("/events/:id", event.getEventInfo);
-    app.post("/updateEvent/:id", event.getAllEvents);
+    app.post("/updateEvent/", event.getAllEvents);
     app.delete("/deleteEvent/:id", event.deleteEvent);
 
     app.get("/attendEvent/:id", event.attendEvent);

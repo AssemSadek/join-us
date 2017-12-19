@@ -42,7 +42,7 @@ var getEventInfo = function(req,res) {
   ,function (err,result){
     if(err){
       var resObject = {};
-      resObject.m = "no events";
+      resObject.m = "no event found";
     }
     else {
       res.send(result);
@@ -52,7 +52,7 @@ var getEventInfo = function(req,res) {
 
 var updateEventInfo = function(req,res){
   con.query("UPDATE event  SET Title=? ,Description=?, StartDate=?, EndDate=?, Category = ?, image = ? TicketParice = ? WHERE ID = ?"
-  ,[req.body.Title, req.body.Description, req.body.StartDate, req.body.EndDate, req.body.Category, req.body.image, req.body.TicketPrice, req.params.id]
+  ,[req.body.title, req.body.description, req.body.startDate, req.body.endDate, req.body.category, req.body.image, req.body.ticketPrice, req.body.id]
   ,function(err,result){
     if(err){
       var resObject = {};
@@ -65,12 +65,12 @@ var updateEventInfo = function(req,res){
 };
 
 var deleteEvent = function(req,res){
-  con.query("Delete FROM event where event.ID = ?"
+  con.query("Delete FROM event WHERE event.ID = ?"
   ,[req.params.id]
     ,function(err,result){
       if(err){
         var resObject = {};
-        resObject.m = "can't delete";
+        resObject.m = "can't delete event";
       }
       else {
         res.send(result);
@@ -108,12 +108,17 @@ var unattendEvent = function(req,res){
 };
 
 var getEventParticipants = function(req,res){
-  con.query("SELECT U.UserName,U.Image FROM User U,Attends A where U.UserName = A.UN and A.EID=?"
+  con.query("SELECT U.UserName,U.Image FROM User U,Attends A WHERE U.UserName = A.UN and A.EID=?"
   ,[req.params.id]
   ,function(err,result){
     if(err){
       var resObject = {};
       resObject.m = "can't unattend";
+    }
+    else if (result.length == 0) {
+      var resObject = {}
+      resObject.m = "No participants";
+      res.send(resObject);
     }
     else {
       res.send(result);
@@ -122,12 +127,12 @@ var getEventParticipants = function(req,res){
 };
 
 var addComment = function (req,res) {
-  con.query("Insert into comment(Content,CUN,CEID) values(?,?,?);"
-  ,[req.body.text, req.userCookie.userName, req.params.id]
+  con.query("INSERT INTO comment(Content,CUN,CEID) values(?,?,?);"
+  ,[req.body.text, req.userCookie.userName, req.body.id]
   ,function(err,result){
     if(err){
         var resObject = {};
-        resObject.m = "can't unattend";
+        resObject.m = "can't add comment";
       }
     else {
       res.send(result);
@@ -141,7 +146,12 @@ var getEventComments = function (req,res) {
   ,function(err,result){
     if(err){
         var resObject = {};
-        resObject.m = "can't unattend";
+        resObject.m = "can't get comments";
+      }
+      else if (result.length == 0) {
+        var resObject = {}
+        resObject.m = "No comments";
+        res.send(resObject);
       }
     else {
       res.send(result);
@@ -150,13 +160,13 @@ var getEventComments = function (req,res) {
 };
 
 var addReport = function (req,res) {
-  con.query("Insert into report(Problem,RUN,REID) values(?,?,?);"
-  ,[req.body.text, req.userCookie.userName, req.params.id]
+  con.query("INSERT INTO report(Problem,RUN,REID) values(?,?,?);"
+  ,[req.body.text, req.userCookie.userName, req.body.id]
   ,function(err,result){
     if(err){
-        var resObject = {};
-        resObject.m = "can't unattend";
-      }
+      var resObject = {};
+      resObject.m = "can't add report";
+    }
     else {
       res.send(result);
     }
@@ -169,9 +179,14 @@ var getEventReports = function (req,res) {
   ,[req.params.id]
   ,function(err,result){
     if(err){
-        var resObject = {};
-        resObject.m = "can't unattend";
-      }
+      var resObject = {};
+      resObject.m = "can't get reports";
+    }
+    else if (result.length == 0) {
+      var resObject = {}
+      resObject.m = "No reports";
+      res.send(resObject);
+    }
     else {
       res.send(result);
     }
@@ -181,16 +196,20 @@ var getEventReports = function (req,res) {
 var GetAllReports = function (req,res) {
   con.query("SELECT E.Title, R.RUN, R.Problem FROM Report R Event E WHERE E.ID = R.REID  ORDER BY R.ID DESC"
   ,function(err,result){
-      if(err){
-          var resObject = {};
-          resObject.m = "can't unattend";
-        }
-      else {
-        res.send(result);
-      }
-    });
-  };
-
+    if(err){
+      var resObject = {};
+      resObject.m = "can't get reports";
+    }
+    else if (result.length == 0) {
+      var resObject = {}
+      resObject.m = "No reports";
+      res.send(resObject);
+    }
+    else {
+      res.send(result);
+    }
+  });
+};
 
   module.exports = {
     getAllEvents: getAllEvents,
