@@ -138,8 +138,8 @@ var getUserEvents = function(req,res){
 };
 
 
-var getEventsAttended = function(req,res){
- con.query("SELECT E.* FROM user U, event E,attends A WHERE U.Username = A.UN AND E.ID = A.EID AND U.Username = ?"
+var getAttendedEvents = function(req,res){
+ con.query("SELECT E.* FROM user U, event E,attends A WHERE U.Username = A.UN AND E.ID = A.EID AND U.Username = ? AND E.StartDate < NOW() ORDER by A.Date DESC"
     ,[req.params.username]
     ,function(err,result){
       if(err){
@@ -157,6 +157,24 @@ var getEventsAttended = function(req,res){
     });
 };
   
+var getCurrentEvents = function(req,res){
+  con.query("SELECT E.* FROM user U, event E,attends A WHERE U.Username = A.UN AND E.ID = A.EID AND U.Username = ? AND E.StartDate > NOW() ORDER by A.Date DESC"
+     ,[req.params.username]
+     ,function(err,result){
+       if(err){
+         console.log(err);
+         res.status(500).send(err);
+       }
+       else if(result.length==0){
+         var resObject = {}
+         resObject.m = "User didn't attend any events";
+         res.send(resObject);
+       }
+       else {
+         res.send(result);
+       }
+     });
+ };
 
 var getUserFollowers = function(req,res){
   con.query("SELECT User.Username User.FullName User.Image  FROM User, Follows WHERE User.Username = follows.Follower AND Followed = ?"
@@ -265,8 +283,9 @@ module.exports = {
   updateUserInfo : updateUserInfo, 
   
   getUserEvents : getUserEvents,
-  getEventsAttended : getEventsAttended,
-  
+  getAttendedEvents : getAttendedEvents,
+  getCurrentEvents : getCurrentEvents,
+
   getUserFollowers : getUserFollowers,
   getUserFollowing : getUserFollowing,
   follow : follow,
