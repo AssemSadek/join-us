@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2017 at 03:10 PM
+-- Generation Time: Dec 19, 2017 at 09:16 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `joinusd_db`
 --
-CREATE DATABASE IF NOT EXISTS `joinusd_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `joinusd_db`;
 
 -- --------------------------------------------------------
 
@@ -30,13 +28,18 @@ USE `joinusd_db`;
 -- Table structure for table `attends`
 --
 
-DROP TABLE IF EXISTS `attends`;
 CREATE TABLE `attends` (
   `UN` varchar(30) NOT NULL,
   `EID` int(11) NOT NULL,
-  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Status` enum('Attending','Maybe','Not Attending','Interested') NOT NULL
+  `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `attends`
+--
+
+INSERT INTO `attends` (`UN`, `EID`, `Date`) VALUES
+('LanaChafik', 2, '2017-12-19 21:30:11');
 
 -- --------------------------------------------------------
 
@@ -44,7 +47,6 @@ CREATE TABLE `attends` (
 -- Table structure for table `comment`
 --
 
-DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `CID` int(11) NOT NULL,
   `Content` text NOT NULL,
@@ -59,7 +61,6 @@ CREATE TABLE `comment` (
 -- Table structure for table `event`
 --
 
-DROP TABLE IF EXISTS `event`;
 CREATE TABLE `event` (
   `ID` int(11) NOT NULL,
   `Title` varchar(50) NOT NULL,
@@ -74,6 +75,12 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`ID`, `Title`, `StartDate`, `EndDate`, `Description`, `Organizer`, `DateCreated`, `Category`, `Image`, `TicketPrice`) VALUES
+(1, 'Dahab ', '2018-01-10 07:00:00', '2018-01-24 09:00:00', 'blue hole', 'LanaChafik', '2017-12-19 21:29:24', 'Travel', 'https://s-ec.bstatic.com/images/hotel/max1024x768/859/85955446.jpg', 1500),
+(2, 'Omar Khairat @ CUFE', '2017-12-27 20:00:00', '2017-12-27 22:00:00', 'amazing pianist', 'AhmedZakaria', '2017-12-19 21:29:24', 'Musical', 'https://yt3.ggpht.com/-7TRJmY-f6PQ/AAAAAAAAAAI/AAAAAAAAAAA/CZOWtyXTXGg/s900-c-k-no-mo-rj-c0xffffff/photo.jpg', 200);
 
 -- --------------------------------------------------------
 
@@ -81,12 +88,27 @@ CREATE TABLE `event` (
 -- Table structure for table `follows`
 --
 
-DROP TABLE IF EXISTS `follows`;
 CREATE TABLE `follows` (
   `Follower` varchar(30) NOT NULL,
   `Followed` varchar(30) NOT NULL,
   `Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `follows`
+--
+
+INSERT INTO `follows` (`Follower`, `Followed`, `Date`) VALUES
+('AhmedHassan', 'AhmedZakaria', '2017-12-19 22:14:05'),
+('AhmedHassan', 'LanaChafik', '2017-12-19 22:14:05'),
+('AhmedZakaria', 'LanaChafik', '2017-12-19 22:14:05'),
+('AssemSadek', 'AhmedZakaria', '2017-12-19 22:14:05'),
+('LanaChafik', 'AssemSadek', '2017-12-19 22:14:05'),
+('LanaChafik', 'Sama Ihab', '2017-12-19 22:14:05'),
+('May', 'AhmedZakaria', '2017-12-19 22:14:05'),
+('May', 'LanaChafik', '2017-12-19 22:14:05'),
+('Sama Ihab', 'AssemSadek', '2017-12-19 22:14:05'),
+('Sama Ihab', 'LanaChafik', '2017-12-19 22:14:05');
 
 -- --------------------------------------------------------
 
@@ -94,7 +116,6 @@ CREATE TABLE `follows` (
 -- Table structure for table `report`
 --
 
-DROP TABLE IF EXISTS `report`;
 CREATE TABLE `report` (
   `RID` int(11) NOT NULL,
   `Problem` text NOT NULL,
@@ -109,9 +130,8 @@ CREATE TABLE `report` (
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `UserName` varchar(30) NOT NULL,
+  `Username` varchar(30) NOT NULL,
   `FullName` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
@@ -125,6 +145,16 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`Username`, `FullName`, `Email`, `Password`, `Image`, `Bio`, `BirthDate`, `DateReg`, `Gender`, `Interests`, `Type`) VALUES
+('AhmedHassan', 'Ahmed Hassan', 'ahmedhassan@hotmail.com', '123456', 'https://cdn.images.express.co.uk/img/dynamic/galleries/x701/319184.jpg', 'Football player', '1995-12-05', '2017-12-16 15:59:15', 'Male', 'Musical', 'Normal'),
+('AhmedZakaria', 'Ahmed Zakaria', 'zakaria@yahoo.com', '123456', 'https://cdn.flixbus.de/d7files/hi_res_images/culture_and_history/5178_Barcelona.jpg', 'Traveller', '1993-12-27', '2017-12-16 15:59:15', 'Male', 'Religious,Travel', 'Normal'),
+('AssemSadek', 'Assem Sadek', 'assemsadek@gmail.com', 'adminassem', 'https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/732px-Real_Madrid_CF.svg.png', '\"Computer engineering student at Cairo University.\"', '1994-07-23', '2017-12-16 15:54:23', 'Male', 'Religious,Theatre,Musical,Travel,Educational', 'Admin'),
+('LanaChafik', 'Lana Chafik', 'lanachafik@gmail.com', 'adminlana', NULL, NULL, NULL, '2017-12-16 15:54:23', NULL, NULL, 'Admin'),
+('May', 'May Ashraf', 'mayouy@gmail.com', '123456', NULL, 'Singer', '1995-12-15', '2017-12-16 16:03:15', 'Female', 'Musical', 'Normal'),
+('Sama Ihab', 'Sama Ihab', 'semsem@yahoo.com', '123456', NULL, 'Teacher', '1990-11-27', '2017-12-16 16:03:15', 'Female', 'Religious,Educational', 'Normal');
 
 --
 -- Indexes for dumped tables
@@ -134,13 +164,16 @@ CREATE TABLE `user` (
 -- Indexes for table `attends`
 --
 ALTER TABLE `attends`
-  ADD PRIMARY KEY (`UN`,`EID`);
+  ADD PRIMARY KEY (`UN`,`EID`),
+  ADD KEY `EID_FKA_idx` (`EID`);
 
 --
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`CID`,`CUN`,`CEID`);
+  ADD PRIMARY KEY (`CID`,`CUN`,`CEID`),
+  ADD KEY `EID_FKC_idx` (`CEID`),
+  ADD KEY `UN_FKC_idx` (`CUN`);
 
 --
 -- Indexes for table `event`
@@ -152,19 +185,22 @@ ALTER TABLE `event`
 -- Indexes for table `follows`
 --
 ALTER TABLE `follows`
-  ADD PRIMARY KEY (`Follower`,`Followed`);
+  ADD PRIMARY KEY (`Follower`,`Followed`),
+  ADD KEY `FD_FKF_idx` (`Followed`);
 
 --
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
-  ADD PRIMARY KEY (`RID`,`RUN`,`REID`);
+  ADD PRIMARY KEY (`RID`,`RUN`,`REID`),
+  ADD KEY `UN_FKR_idx` (`RUN`),
+  ADD KEY `EID_FKR_idx` (`REID`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`UserName`),
+  ADD PRIMARY KEY (`Username`),
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
@@ -189,31 +225,38 @@ ALTER TABLE `event`
 ALTER TABLE `report`
   MODIFY `RID` int(11) NOT NULL AUTO_INCREMENT;
 
-
--- Dumping data for table `user`
+--
+-- Constraints for dumped tables
 --
 
-INSERT INTO `user` (`UserName`, `FullName`, `Email`, `Password`, `Image`, `Bio`, `BirthDate`, `DateReg`, `Gender`, `Interests`, `Type`) VALUES
-('AhmedHassan', 'Ahmed Hassan', 'ahmedhassan@hotmail.com', '123456', 'https://cdn.images.express.co.uk/img/dynamic/galleries/x701/319184.jpg', 'Football player', '1995-12-05', '2017-12-16 15:59:15', 'Male', 'Musical', 'Normal'),
-('AhmedZakaria', 'Ahmed Zakaria', 'zakaria@yahoo.com', '123456', 'https://cdn.flixbus.de/d7files/hi_res_images/culture_and_history/5178_Barcelona.jpg', 'Traveller', '1993-12-27', '2017-12-16 15:59:15', 'Male', 'Religious,Travel', 'Normal'),
-('AssemSadek', 'Assem Sadek', 'assemsadek@gmail.com', 'adminassem', 'https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/732px-Real_Madrid_CF.svg.png', '\"Computer engineering student at Cairo University.\"', '1994-07-23', '2017-12-16 15:54:23', 'Male', 'Religious,Theatre,Musical,Travel,Educational', 'Admin'),
-('LanaChafik', 'Lana Chafik', 'lanachafik@gmail.com', 'adminlana', NULL, NULL, NULL, '2017-12-16 15:54:23', NULL, NULL, 'Admin'),
-('May', 'May Ashraf', 'mayouy@gmail.com', '123456', NULL, 'Singer', '1995-12-15', '2017-12-16 16:03:15', 'Female', 'Musical', 'Normal'),
-('Sama Ihab', 'Sama Ihab', 'semsem@yahoo.com', '123456', NULL, 'Teacher', '1990-11-27', '2017-12-16 16:03:15', 'Female', 'Religious,Educational', 'Normal');
-
-
--- Dumping data for table `event`
 --
+-- Constraints for table `attends`
+--
+ALTER TABLE `attends`
+  ADD CONSTRAINT `EID_FKA` FOREIGN KEY (`EID`) REFERENCES `event` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `UN_FKA` FOREIGN KEY (`UN`) REFERENCES `user` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO `event` (`ID`, `Title`, `StartDate`, `EndDate`, `Description`, `Organizer`, `DateCreated`, `Category`, `Image`, `TicketPrice`) VALUES
-(1, '5 days in Dahab', '2018-01-20 00:00:00', '2017-12-25 00:00:00', 'Lagonna\r\nWadi el wesh wash\r\nblue hole\r\nTowaylat', 'AhmedZakaria', '2017-12-16 16:08:06', 'Travel', 'http://www.travelersegypt.com/uploads/dahab1.png', 1500),
-(2, 'Omar Khairat @ CUFE', '2018-02-22 20:00:00', '2018-02-22 23:00:00', NULL, 'May', '2017-12-16 16:08:06', 'Musical', NULL, 200);
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `EID_FKC` FOREIGN KEY (`CEID`) REFERENCES `event` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `UN_FKC` FOREIGN KEY (`CUN`) REFERENCES `user` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+--
+-- Constraints for table `follows`
+--
+ALTER TABLE `follows`
+  ADD CONSTRAINT `FD_FKF` FOREIGN KEY (`Followed`) REFERENCES `user` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FR_FKF` FOREIGN KEY (`Follower`) REFERENCES `user` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-
+--
+-- Constraints for table `report`
+--
+ALTER TABLE `report`
+  ADD CONSTRAINT `EID_FKR` FOREIGN KEY (`REID`) REFERENCES `event` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `UN_FKR` FOREIGN KEY (`RUN`) REFERENCES `user` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -14,7 +14,8 @@ module.exports.route = function(app){
     app.get("/updateUserInfo", user.updateUserInfo);
 
     app.get("/userEvents/:username", user.getUserEvents);
-    app.get("/userEventsAttended/:username", user.getEventsAttended);
+    app.get("/userAttendedEvents/:username", user.getAttendedEvents);
+    app.get("/userCurrentEvents/:username", user.getCurrentEvents);
     app.get("/userFollowers/:username", user.getUserFollowers);
     app.get("/userFollowing/:username", user.getUserFollowing);
 
