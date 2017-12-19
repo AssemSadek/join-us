@@ -2,10 +2,15 @@
 con = require("./../../config/connectionDB").con;
 
 var getAllUsers = function (req, res) {
-  con.query('SELECT * FROM user', function (err, result) {
+  con.query('SELECT Username, FullName, Image FROM user', function (err, result) {
     if (err) {
       console.log(err);
       res.status(500).send(err);
+    }
+    else if (result.length == 0) {
+      var resObject = {}
+      resObject.m = "User not found"
+      res.send(resObject);
     } 
     else {
       res.send(result);
@@ -16,7 +21,7 @@ var getAllUsers = function (req, res) {
   
 var signUp =  function(req,res){
   con.query("INSERT INTO User VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-  , [req.body.userName, req.body.fullName, req.body.email, req.body.password]
+  , [req.body.username, req.body.fullName, req.body.email, req.body.password]
   , function (err, result) {
     if (err) {
       console.log(err);
@@ -74,11 +79,9 @@ var authenticate = function(req,res){
 };
 
 var getUserInfo = function(req,res){
-  con.query("SELECT Username,Email,Fullname,Gender,Birthdate,Image,Type FROM User WHERE Username = ?"
+  con.query("SELECT Username,Email,FullName,Gender,Birthdate,Image,Type FROM User WHERE Username = ?"
   ,[req.params.username]
   ,function(err,result){
-    console.log(req.params.username);
-    console.log(result);
     if(err) {
       console.log(err);
       res.status(500).send(err);
@@ -96,7 +99,7 @@ var getUserInfo = function(req,res){
 
 
 var updateUserInfo = function (req,res){
-  con.query("UPDATE USER SET UserName = ?, FullName = ? , Password = ? , Email= ? , Image = ? , Gender = ? , Birthdate = ?, Bio = ?, Interests = ? Where Username = ?"
+  con.query("UPDATE USER SET Username = ?, FullName = ? , Password = ? , Email= ? , Image = ? , Gender = ? , Birthdate = ?, Bio = ?, Interests = ? Where Username = ?"
   ,[req.body.userName, req.body.fullName, req.body.password, req.body.email, req.body.Image, req.body.Gender, req.body.Birthdate, req.body.bio,req.body.Interests, req.userCookie.username]
   ,function(err,result){
     if(err){
@@ -153,7 +156,7 @@ var getEventsAttended = function(req,res){
   
 
 var getUserFollowers = function(req,res){
-  con.query("SELECT User.* FROM User, Follows WHERE User.Username = follows.Follower AND Followed = ?"
+  con.query("SELECT User.Username User.FullName User.Image  FROM User, Follows WHERE User.Username = follows.Follower AND Followed = ?"
   ,[req.params.username]
   ,function(err,result){
     if(err){
@@ -172,7 +175,7 @@ var getUserFollowers = function(req,res){
 };
 
 var getUserFollowing = function(req,res){
-  con.query("SELECT User.* FROM User,Follows WHERE User.Username = follows.Followed AND Follower = ?"
+  con.query("SELECT User.Username User.FullName User.Image FROM User,Follows WHERE User.Username = follows.Followed AND Follower = ?"
   ,[req.params.username]
   ,function(err,result){
     if(err){

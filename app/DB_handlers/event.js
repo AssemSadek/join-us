@@ -8,7 +8,13 @@ var getAllEvents = function (req, res) {
     if (err) {
       console.log(err);
       res.status(500).send(err);
-    } else {
+    }
+    else if (result.length == 0) {
+      var resObject = {}
+      resObject.m = "No events on website"
+      res.send(resObject);
+    }
+    else {
       res.send(result);
     }
   });
@@ -16,8 +22,8 @@ var getAllEvents = function (req, res) {
 
 
 var createEvent = function(req,res){
-  con.query("INSERT into event(Title, StartDate, EndDate, Description, Organizer, Category, Image, TicketPrice) values(?,?,?,?,?,?,?,?)"
-  ,[req.body.Title, req.body.startDate, req.body.endDate, req.body.Description, req.userCookie.userName, req.body.category, req.body.Image, req.body.ticketPrice]
+  con.query("INSERT INTO event(Title, StartDate, EndDate, Description, Organizer, Category, Image, TicketPrice) values(?,?,?,?,?,?,?,?)"
+  ,[req.body.title, req.body.startDate, req.body.endDate, req.body.description, req.userCookie.username, req.body.category, req.body.Image, req.body.ticketPrice]
   ,function(err,result){
     if(err){
       var resObject = {};
@@ -31,7 +37,7 @@ var createEvent = function(req,res){
 
 
 var getEventInfo = function(req,res) {
-  con.query("SELECT * FROM event where ID = ?"
+  con.query("SELECT * FROM eventWHERE ID = ?"
   ,[req.params.id]
   ,function (err,result){
     if(err){
