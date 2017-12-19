@@ -82,7 +82,7 @@ var authenticate = function(req,res){
 };
 
 var getUserInfo = function(req,res){
-  con.query("SELECT Username,Email,FullName,Gender,Birthdate,Image,Type FROM User WHERE Username = ?"
+  con.query("SELECT Username,Password,Email,FullName,Gender,Birthdate,Image,Type FROM User WHERE Username = ?"
   ,[req.params.username]
   ,function(err,result){
     if(err) {
