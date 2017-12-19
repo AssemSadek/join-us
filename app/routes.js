@@ -11,7 +11,7 @@ module.exports.route = function(app){
     app.post("/logout", user.logout);
     app.get("/authenticate", user.authenticate);
     app.get("/users/:username", user.getUserInfo);
-    app.get("/updateUserInfo", user.updateUserInfo);
+    app.post("/updateUserInfo", user.updateUserInfo);
 
     app.get("/userEvents/:username", user.getUserEvents);
     app.get("/getAttendedEvents/:username", user.getAttendedEvents);

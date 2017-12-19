@@ -102,9 +102,13 @@ var getUserInfo = function(req,res){
 
 
 var updateUserInfo = function (req,res){
-  con.query("UPDATE USER SET Username = ?, FullName = ? , Password = ? , Email= ? , Image = ? , Gender = ? , Birthdate = ?, Bio = ?, Interests = ? Where Username = ?"
-  ,[req.body.userName, req.body.fullName, req.body.password, req.body.email, req.body.Image, req.body.Gender, req.body.Birthdate, req.body.bio,req.body.Interests, req.userCookie.username]
+  console.log(req.userCookie);
+  console.log(req.body);
+  con.query("UPDATE USER SET FullName = ? , Password = ? , Email= ? , Image = ? , Gender = ? , Birthdate = ?, Bio = ?, Interests = ? Where Username = ?"
+  ,[ req.body.fullName, req.body.password, req.body.email, req.body.Image, req.body.Gender, req.body.Birthdate, req.body.bio,req.body.Interests, req.userCookie.username]
   ,function(err,result){
+    console.log(err);
+    console.log(result);
     if(err){
       resObject = {};
       resObject.m ="Update profile Failed";

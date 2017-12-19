@@ -1,11 +1,40 @@
 <form>
   <div class="form-group">
     <label><b>Full Name</b></label>
-    <input class="form-control">
+    <input class="form-control" value="{{ (userInfo.FullName) ? userInfo.FullName : empty }}" #fullNameValue>
   </div>
   <div class="form-group">
     <label><b>Username</b></label>
-    <input>
+    <input class="form-control" value="{{ (userInfo.Username) }}" disabled>
   </div>
-  <button type="submit" class="btn btn-primary">Save</button>
+  <div class="form-group">
+    <label><b>Email</b></label>
+    <input class="form-control" value="{{ (userInfo.Email) ? userInfo.Email : empty }}" #emailValue>
+  </div>
+  <div class="form-group">
+    <label><b>Password</b></label>
+    <input class="form-control" value="{{ (userInfo.Password) ? userInfo.Password : empty }}" #passwordValue>
+  </div>
+  <div class="form-group">
+    <label><b>Birth Date</b></label>
+    <input class="form-control" value="{{ (userInfo.Birthdate) ? userInfo.Birthdate : empty }}" #birthdateValue>
+  </div>
+  <div class="form-group">
+    <label><b>Gender</b></label>
+    <input class="form-control" value="{{ (userInfo.Gender) ? userInfo.Gender : empty }}" #genderValue>
+  </div>
+  <div class="form-group">
+    <label><b>Biography</b></label>
+    <input class="form-control" value="{{ (userInfo.Bio) ? userInfo.Bio : empty }}" #bioValue>
+  </div>
+  <div class="form-group">
+    <label><b>Image Link</b></label>
+    <input class="form-control" value="{{ (userInfo.Image) ? userInfo.Image : empty }}" #imageValue>
+  </div>
+  <div class="form-group">
+    <label><b>Interests</b></label>
+    <input class="form-control" value="{{ (userInfo.Interests) ? userInfo.Interests : empty }}" #interestsValue>
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="updateProfile(fullNameValue.value,emailValue.value,passwordValue.value,birthdateValue.value,genderValue.value,bioValue.value,imageValue.value,interestsValue.value)">Save</button>
 </form>

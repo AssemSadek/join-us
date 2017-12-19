@@ -26,7 +26,11 @@ export class CoreService {
     }
 
     getEventsAttended(username: string): Observable<any> {
-        return this.http.get('/userEventsAttended/' + username).map(res => res.json());
+        return this.http.get('/getAttendedEvents/' + username).map(res => res.json());
+    }
+
+    updateUserInfo(fullName: string, email: string, password: string, birthdate: string, gender: string, bio: string, image: string, interests: string): Observable<any>{
+        return this.http.post('/updateUserInfo', {"fullName": fullName, "password": password, "email": email, "Image": image, "Gender": gender, "Birthdate": birthdate, "bio": bio, "Interests": interests}).map(res => res.json());
     }
 
 }

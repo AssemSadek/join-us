@@ -19,7 +19,7 @@ export class LoggedinComponent implements OnInit {
   currentEvents = null;
   following = null;
   followers = null;
-  constructor(private _authService: AuthenticationService,
+  constructor(private authService: AuthenticationService,
               private coreService: CoreService) { 
   }
 
@@ -88,7 +88,7 @@ export class LoggedinComponent implements OnInit {
    * Initializes the component.
    */
   private _initState(): void {
-    this.userName = this._authService.getUserName();
+    this.userName = this.authService.getUserName();
     this.userName.subscribe(data => this.res = data);
     this.userInfoObs = this.coreService.getUserInfo(this.res);
     this.userInfoObs.subscribe(data => this.userInfo = data);
