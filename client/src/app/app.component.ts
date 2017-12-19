@@ -44,4 +44,8 @@ export class AppComponent {
             this._router.navigate(['search'], navigationExtras);
         }
     }
+
+    editProfile() {
+        this._router.navigate(['edit-profile']);
+    }
 }

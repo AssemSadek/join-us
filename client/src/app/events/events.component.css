@@ -1,7 +1,6 @@
 .events {
     padding-top: 30px;
 }
-
 .table {
     width: 90%;
     margin-left: 5%;
@@ -16,4 +15,8 @@ th {
 }
 .col-md-4 {
     margin-bottom: 15px;
+}
+.card-img-top {
+    width: 348.5px;
+    height: 250px;
 }

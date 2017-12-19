@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CoreService } from './services/core.service';
 
-
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -13,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { AuthenticationService } from './services/authentication.service';
 import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './users/users.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { UsersComponent } from './users/users.component';
     EventsComponent,
     LoggedinComponent,
     SearchComponent,
-    UsersComponent
+    UsersComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

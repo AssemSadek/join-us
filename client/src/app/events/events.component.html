@@ -6,13 +6,13 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4" *ngFor="let event of events">
+        <div class="col-md-4" *ngFor="let event of events | async">
             <div class="card">
-                <img class="card-img-top" src="{{ event.photo }}">
+                <img class="card-img-top" src="{{ event.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
                 <div class="card-body">
-                    <h4 class="card-title">{{ event.eventName }}</h4>
-                    <p class="card-text">{{ event.eventDescription }}</p>
-                    <a href="#" class="btn btn-primary">View</a>
+                    <h4 class="card-title">{{ event.Title }}</h4>
+                    <p class="card-text">{{ event.StartDate }}</p>
+                    <a href="#" class="btn btn-primary">View Event</a>
                     <a href="#" class="btn btn-primary" *ngIf="isLoggedIn | async">Attend</a>
                 </div>
             </div>

@@ -4,11 +4,11 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
-    private _loginState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    private _userName: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+    private loginState: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    private userName: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
     constructor(
-        private _http: Http
+        private http: Http
     ) { }
 
     /**
@@ -20,10 +20,13 @@ export class AuthenticationService {
      * @param {string} username The user name the user logged in with.
      * @param {string} password The password the user logged in with.
      */
-    public authenticate(username: string, password: string): void {
-        // If Http call is successful.
-        this._loginState.next(true);
-        this._userName.next(username);
+    public authenticate(username: string, password: string): Observable<any> {
+        return this.http.post('/login',[{"username": username, "password": password}])
+                        .map(res => res.json())
+                        .do(data => {if (data["m"] == null) {
+                                        this.loginState.next(true);
+                                        this.userName.next(username)
+                                    }});
     }
 
     /**
@@ -33,9 +36,9 @@ export class AuthenticationService {
      * any HTTP calls to do so.
      */
     public logout(): void {
-        if(this._loginState.getValue()) {
-            this._loginState.next(false);
-            this._userName.next(null);
+        if(this.loginState.getValue()) {
+            this.loginState.next(false);
+            this.userName.next(null);
         }
     }
 
@@ -48,7 +51,7 @@ export class AuthenticationService {
      * subject value.
      */
     public getLoginState(): Observable<boolean> {
-        return this._loginState.asObservable();
+        return this.loginState.asObservable();
     }
 
     /**
@@ -60,6 +63,6 @@ export class AuthenticationService {
      * subject value.
      */
     public getUserName(): Observable<string> {
-        return this._userName.asObservable();
+        return this.userName.asObservable();
     }
 }

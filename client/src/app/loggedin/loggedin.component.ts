@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
+import { CoreService } from '../services/core.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -9,12 +10,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class LoggedinComponent implements OnInit {
   public userName: Observable<string>;
+  public userInfoObs: Observable<string>;
+  public userInfo = null;
+  res: string;
+  public msg = "Not Specified";
   eventsCreated = null;
   eventsAttended = null;
   currentEvents = null;
   following = null;
   followers = null;
-  constructor(private _authService: AuthenticationService) { 
+  constructor(private _authService: AuthenticationService,
+              private coreService: CoreService) { 
   }
 
   ngOnInit() {
@@ -114,5 +120,8 @@ export class LoggedinComponent implements OnInit {
    */
   private _initState(): void {
     this.userName = this._authService.getUserName();
+    this.userName.subscribe(data => this.res = data);
+    this.userInfoObs = this.coreService.getUserInfo(this.res);
+    this.userInfoObs.subscribe(data => {this.userInfo = data; console.log(this.userInfo);});
   }
 }

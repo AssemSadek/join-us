@@ -22,11 +22,12 @@
 
             <ul class="navbar-nav" *ngIf="isLoggedIn | async">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" routerLink="loggedin">
                         {{ userName | async }}
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#" (click)="signOut()">Sign out</a>
+                        <a class="dropdown-item" (click)="editProfile()">Edit profile</a>
                     </div>
                 </li>
             </ul>
