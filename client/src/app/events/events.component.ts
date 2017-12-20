@@ -12,6 +12,7 @@ import {Router, NavigationExtras} from "@angular/router";
 export class EventsComponent implements OnInit {
   public isLoggedIn: Observable<boolean>;
   public events: Observable<any>;
+  public ID: Observable<string>;
   constructor(private authService: AuthenticationService,
               private coreService: CoreService,
               private router: Router) { 
@@ -43,6 +44,9 @@ export class EventsComponent implements OnInit {
       }
     };
     this.router.navigate(['view-event'], navigationExtras);
+  }
+
+  attendEvent(title: string) {
   }
 
 }

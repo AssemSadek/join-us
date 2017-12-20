@@ -125,8 +125,8 @@ var unattendEvent = function(req,res){
 
 var getEventParticipants = function(req,res){
   console.log(req.params);
-  con.query("SELECT U.UserName,U.FullName,U.Image FROM User U,Attends A WHERE U.UserName = A.UN and A.EID=?"
-  ,[req.params.id]
+  var query = "SELECT U.Username,U.FullName,U.Image FROM User U,Attends A WHERE U.Username = A.UN and A.EID=" + req.params.id;  
+  con.query(query
   ,function(err,result){
     console.log(err);
     console.log(result);
