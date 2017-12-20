@@ -47,6 +47,9 @@ export class EventsComponent implements OnInit {
   }
 
   attendEvent(title: string) {
+    this.ID = this.coreService.getEventID(title);
+    this.ID.subscribe(data => this.coreService.attendEvent(data[0]["ID"]));
+    this.router.navigate(['loggedin']);
   }
 
 }

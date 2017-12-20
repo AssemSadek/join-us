@@ -72,9 +72,9 @@ export class CoreService {
         return this.http.get('/getUserType/'+ username).map(res => res.json());
     }
 
-    attend(ID: string): Observable<any> {
+    attendEvent(ID: string): Observable<any> {
         console.log(ID);
-        return this.http.get("/attendEvent/"+ID).map(res => res.json());
+        return this.http.get('/attendEvent/'+ ID).map(res => res.json());
     }
 
     unattend(ID: string): Observable<any> {

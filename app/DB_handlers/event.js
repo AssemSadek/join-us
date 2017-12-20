@@ -98,7 +98,7 @@ var deleteEvent = function(req,res){
 var attendEvent = function(req,res){
   console.log(req.userCookie);
   console.log(req.params);
-  con.query("INSERT INTO attends VALUES(?,?) "
+  con.query("INSERT INTO attends(UN,EID) VALUES(?,?) "
   ,[req.userCookie.userName,req.params.id]
   ,function(err,result){
     console.log(err);

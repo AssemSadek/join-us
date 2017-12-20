@@ -13,22 +13,17 @@ export class WelcomeComponent implements OnInit {
     this.events = [{
       "photo": "https://data.whicdn.com/images/88350461/large.jpg",
       "eventName": "Coldplay",
-      "eventDescription": "bla bla bla bla"
+      "eventDescription": "Coldplay Concert"
     },
     {
       "photo": "https://metrouk2.files.wordpress.com/2017/08/pri_50902887.jpg?w=748&h=498&crop=1",
       "eventName": "Christmas",
-      "eventDescription": "bla bla bla bla"
+      "eventDescription": "Christmas Carols"
     },
     {
       "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
       "eventName": "Lana Del Rey",
-      "eventDescription": "bla bla bla bla"
-    },
-    {
-      "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
-      "eventName": "Lana Del Rey",
-      "eventDescription": "bla bla bla bla"
+      "eventDescription": "Lana Del Rey concert"
     }];
   }
 
