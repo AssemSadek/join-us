@@ -41,7 +41,7 @@
   <div role="tabpanel" class="tab-pane fade in active" id="eventsCreated">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-sm-4" *ngFor="let event of eventsCreated | async">
+        <div class="col-md-4" *ngFor="let event of eventsCreated | async">
           <div class="card">
             <img class="card-img-top" src="{{ event.Image }}" alt="Card image cap">
             <div class="card-body">
@@ -59,12 +59,12 @@
   <div role="tabpanel" class="tab-pane fade" id="eventsAttended">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-sm-4" *ngFor="let event of eventsAttended | async">
+        <div class="col-md-4" *ngFor="let event of eventsAttended | async">
           <div class="card">
             <img class="card-img-top" src="{{ event.Image }}" alt="Card image cap">
             <div class="card-body">
               <h4 class="card-title">{{ event.Title }}</h4>
-              <p class="card-text">{{ event.StartDate }}</p>
+              <p class="card-text">{{ event.StartDate }}</p><br>
               <p class="card-text">{{ event.EndDate }}</p>
             </div>
           </div>
@@ -76,7 +76,7 @@
   <div role="tabpanel" class="tab-pane fade" id="currentEvents">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-sm-4" *ngFor="let event of currentEvents | async">
+        <div class="col-md-4" *ngFor="let event of currentEvents | async">
           <div class="card">
             <img class="card-img-top" src="{{ event.Image }}" alt="Card image cap">
             <div class="card-body">
@@ -91,32 +91,36 @@
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="following">
-    <div class="row">
-      <div class="col-sm-4" *ngFor="let f of following | async">
-        <div class="card">
-          <img class="card-img-top" src="{{ f.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
-          <div class="card-body">
-            <h4 class="card-title">{{ f.FullName }}</h4>
-            <p class="card-text">{{ f.UserName }}</p>
-            <a href="#" class="btn btn-primary">Unfollow</a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let f of following | async">
+          <div class="card">
+            <img class="card-img-top" src="{{ f.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
+            <div class="card-body">
+              <h4 class="card-title">{{ f.FullName }}</h4>
+              <p class="card-text">{{ f.UserName }}</p>
+              <a href="#" class="btn btn-primary">Unfollow</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>  
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="followers">
-    <div class="row">
-      <div class="col-sm-4" *ngFor="let follower of followers | async">
-          <div class="card">
-              <img class="card-img-top" src="{{ follower.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
-              <div class="card-body">
-                  <h4 class="card-title">{{ follower.FullName }}</h4>
-                  <p class="card-text">{{ follower.UserName }}</p>
-              </div>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let follower of followers | async">
+            <div class="card">
+                <img class="card-img-top" src="{{ follower.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
+                <div class="card-body">
+                    <h4 class="card-title">{{ follower.FullName }}</h4>
+                    <p class="card-text">{{ follower.UserName }}</p>
+                </div>
+            </div>
+        </div>
       </div>
-    </div>
+    </div>  
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="information">

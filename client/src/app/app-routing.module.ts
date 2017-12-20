@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { ViewEventComponent } from './view-event/view-event.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/welcome', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
     {path: 'search', component: SearchComponent},
     {path: 'users', component: UsersComponent},
     {path: 'edit-profile', component: EditProfileComponent},
-    {path: 'create-event', component: CreateEventComponent}
+    {path: 'create-event', component: CreateEventComponent},
+    {path: 'view-event', component: ViewEventComponent}
 ];
 
 @NgModule ({

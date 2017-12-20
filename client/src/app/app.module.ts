@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { ViewEventComponent } from './view-event/view-event.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreateEventComponent } from './create-event/create-event.component';
     SearchComponent,
     UsersComponent,
     EditProfileComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    ViewEventComponent
   ],
   imports: [
     BrowserModule,

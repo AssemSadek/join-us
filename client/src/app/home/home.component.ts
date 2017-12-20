@@ -32,12 +32,7 @@ export class HomeComponent implements OnInit {
     }
     
     register(fullName: string, username: string, email: string, password: string) {
-        console.log(fullName);
-        console.log(username);
-        console.log(email);
-        console.log(password);
         this.signUpReturn = this.coreService.signUp(fullName, username, email, password);
-        this.signUpReturn.subscribe(data => console.log(data));
-
+        this.router.navigate(['welcome']);
     }
 }

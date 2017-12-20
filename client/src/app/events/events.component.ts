@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Observable } from 'rxjs/Observable';
 import { CoreService } from '../services/core.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -11,8 +12,9 @@ import { CoreService } from '../services/core.service';
 export class EventsComponent implements OnInit {
   public isLoggedIn: Observable<boolean>;
   public events: Observable<any>;
-  constructor(private _authService: AuthenticationService,
-              private coreService: CoreService) { 
+  constructor(private authService: AuthenticationService,
+              private coreService: CoreService,
+              private router: Router) { 
   }
 
   ngOnInit() {
@@ -25,12 +27,16 @@ export class EventsComponent implements OnInit {
    * Initializes the component.
    */
   private _initState(): void {
-    this.isLoggedIn = this._authService.getLoginState();
+    this.isLoggedIn = this.authService.getLoginState();
     this.events = this.getEvents();
   }
 
   getEvents(): Observable<any> {
     return this.coreService.getEvents();
+  }
+
+  viewEvent(title) {
+    this.router.navigate(['view-event']);
   }
 
 }
