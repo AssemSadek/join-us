@@ -38,7 +38,9 @@ export class CoreService {
     }
 
     signUp(fullName: string, username: string, email: string, password: string): Observable<any> {
-        return this.http.post('/signUp', {"username": username, "fullName": fullName, "email": email, "password": password}).map(res => res.json());
+        console.log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        return this.http.post("/signUp", {"username": username, "fullName": fullName, "email": email, "password": password}).map(res => res.json());
+        
     }
 
     createEvent(title: string, startDate: string, endDate: string, description: string, category: string, image: string, ticketPrice: string): Observable<any> {

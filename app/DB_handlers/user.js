@@ -24,6 +24,8 @@ var signUp =  function(req,res){
   con.query("INSERT INTO User(username,fullname,email,password) values(?,?,?,?)"
   , [req.body.username, req.body.fullName, req.body.email, req.body.password]
   , function (err, result) {
+    console.log(result);
+    console.log(err);
     if (err) {
       console.log(err);
       res.send(err);
