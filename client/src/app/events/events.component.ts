@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Observable } from 'rxjs/Observable';
 import { CoreService } from '../services/core.service';
-import { Router } from '@angular/router';
+import {Router, NavigationExtras} from "@angular/router";
 
 @Component({
   selector: 'app-events',
@@ -35,8 +35,14 @@ export class EventsComponent implements OnInit {
     return this.coreService.getEvents();
   }
 
-  viewEvent(title) {
-    this.router.navigate(['view-event']);
+  viewEvent(event) {
+    console.log(event);
+    // let navigationExtras: NavigationExtras = {
+    //   queryParams: {
+    //       "title": title
+    //   }
+    // };
+    //this.router.navigate(['view-event'], navigationExtras);
   }
 
 }

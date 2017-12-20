@@ -11,6 +11,8 @@ import { Observable } from 'rxjs/Observable';
 export class LoggedinComponent implements OnInit {
   public userName: Observable<string>;
   public userInfoObs: Observable<string>;
+  public userType: Observable<string>;
+  public adminFlag: boolean = false;
   public userInfo = null;
   res: string;
   public msg = "Not Specified";
@@ -43,6 +45,11 @@ export class LoggedinComponent implements OnInit {
     this.currentEvents = this.getCurrentEvents(this.res);
     this.followers = this.getFollowers(this.res);
     this.following = this.getFollowing(this.res);
+    this.userType = this.coreService.getUserType(this.res);
+    this.userType.subscribe(data => {console.log(data);
+                                    if (data == 'Admin')
+                                      this.adminFlag = true;
+                                    })
   }
 
   getEventsCreated(username: string): Observable<any> {

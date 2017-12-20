@@ -52,7 +52,20 @@ export class CoreService {
     getFollowing(username: string): Observable<any> {
         return this.http.get('/userFollowing/' + username).map(res => res.json());
     }
+
+    GetEventID(title: string): Observable<any> {
+        return this.http.get('/getIDbyTitle/' + title).map(res => res.json());
+    }
+
     logout(): Observable<any> {
         return this.http.post('/logout/', {}).map(res => res.json());
+    }
+
+    getEventInfo(ID: string): Observable<any> {
+        return this.http.get('/events/'+ ID).map(res => res.json());
+    }
+
+    getUserType(username: string): Observable<any> {
+        return this.http.get('/getUserType/'+ username).map(res => res.json());
     }
 }

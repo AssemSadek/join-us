@@ -72,6 +72,20 @@ var logout = function(req,res){
   }
 };
 
+var getUserType = function(req,res){
+  con.query("SELECT Type from user where Username = ?"
+  ,[req.params.username]
+  ,function(err,result){
+    if(err){
+      var resObject = {};
+      resObject.m = "can't find user";
+    }
+    else {
+      res.send(result);
+    }
+  });
+};
+
 var authenticate = function(req,res){
   var resObject = {username:null,type:null};
   if(req.userCookie.username) {
@@ -282,6 +296,7 @@ module.exports = {
   signUp : signUp,
   login : login,
   logout : logout,
+  getUserType : getUserType,
   authenticate : authenticate,  
   getUserInfo : getUserInfo,
   updateUserInfo : updateUserInfo, 

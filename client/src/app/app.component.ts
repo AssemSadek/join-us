@@ -14,16 +14,16 @@ export class AppComponent {
     public userName: Observable<string>;
     public isLoggedIn: Observable<boolean>;
 
-    constructor(private _authService: AuthenticationService,
+    constructor(private authService: AuthenticationService,
                 private coreService: CoreService,
-                private _router: Router) { }
+                private router: Router) { }
 
     public ngOnInit(): void {
         this._initState();
     }
 
     public signOut(): void {
-        this._authService.logout();
+        this.authService.logout();
         this.coreService.logout();
     }
 
@@ -33,8 +33,8 @@ export class AppComponent {
      * Initializes the component.
      */
     private _initState(): void {
-        this.isLoggedIn = this._authService.getLoginState();
-        this.userName = this._authService.getUserName();
+        this.isLoggedIn = this.authService.getLoginState();
+        this.userName = this.authService.getUserName();
     }
 
     public search(value: string) {
@@ -44,16 +44,16 @@ export class AppComponent {
                     "searchQuery": value
                 }
             };
-            this._router.navigate(['search'], navigationExtras);
+            this.router.navigate(['search'], navigationExtras);
         }
     }
 
     editProfile() {
-        this._router.navigate(['edit-profile']);
+        this.router.navigate(['edit-profile']);
     }
 
     createEvent() {
-        this._router.navigate(['create-event']);
+        this.router.navigate(['create-event']);
     }
 
 }
