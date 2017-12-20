@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ event.Title }}</h4>
                     <p class="card-text">{{ event.StartDate }}</p>
-                    <a class="btn btn-primary" (click)="viewEvent(this)" routerLink="view-event">View Event</a>
+                    <a class="btn btn-primary" (click)="viewEvent(event.Title)" routerLink="view-event">View Event</a>
                     <a class="btn btn-primary" routerLink="loggedin" *ngIf="isLoggedIn | async">Attend</a>
                 </div>
             </div>
