@@ -10,9 +10,9 @@ import {Router, NavigationExtras} from "@angular/router";
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+  public ID: Observable<string>;
   public isLoggedIn: Observable<boolean>;
   public events: Observable<any>;
-  public ID: Observable<string>;
   constructor(private authService: AuthenticationService,
               private coreService: CoreService,
               private router: Router) { 
