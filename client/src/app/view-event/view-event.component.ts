@@ -23,7 +23,7 @@ export class ViewEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ID = this.coreService.GetEventID(this.title);
+    this.ID = this.coreService.getEventID(this.title);
     this.ID.subscribe(data => {console.log(data[0]["ID"]);
                               this.eventInfo = this.coreService.getEventInfo(data[0]["ID"]);
                               console.log(this.eventInfo);

@@ -94,9 +94,13 @@ var deleteEvent = function(req,res){
 
 
 var attendEvent = function(req,res){
+  console.log(req.userCookie);
+  console.log(req.params);
   con.query("INSERT INTO attends VALUES(?,?) "
   ,[req.userCookie.userName,req.params.id]
   ,function(err,result){
+    console.log(err);
+    console.log(result);
     if(err){
       var resObject = {};
       resObject.m = "can't attend";
