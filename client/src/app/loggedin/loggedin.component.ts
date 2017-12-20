@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { CoreService } from '../services/core.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-loggedin',
@@ -12,7 +12,8 @@ export class LoggedinComponent implements OnInit {
   public userName: Observable<string>;
   public userInfoObs: Observable<string>;
   public userType: Observable<string>;
-  public adminFlag: boolean = false;
+  public adminFlag: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public adminFlagObs: Observable<boolean>;
   public userInfo = null;
   res: string;
   public msg = "Not Specified";
@@ -46,10 +47,11 @@ export class LoggedinComponent implements OnInit {
     this.followers = this.getFollowers(this.res);
     this.following = this.getFollowing(this.res);
     this.userType = this.coreService.getUserType(this.res);
-    this.userType.subscribe(data => {console.log(data);
-                                    if (data == 'Admin')
-                                      this.adminFlag = true;
-                                    })
+    this.userType.subscribe(data => {if (data[0]["Type"] == 'Admin'){
+                                        this.adminFlag.next(true);
+                                      }
+                                      this.adminFlagObs = this.adminFlag.asObservable();
+                                    })                               
   }
 
   getEventsCreated(username: string): Observable<any> {

@@ -35,7 +35,7 @@
     <a class="nav-link" href="#recommended" role="tab" data-toggle="tab">Recommended For You</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#reports" role="tab" data-toggle="tab">Reports</a>
+    <a class="nav-link" href="#reports" role="tab" data-toggle="tab" *ngIf="adminFlagObs | async ">Reports</a>
   </li>
 </ul>
 
@@ -153,5 +153,5 @@
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="recommended">Recommended for you</div>
-  <div role="tabpanel" class="tab-pane fade" id="reports" *ngIf="adminFlag">Reports</div>
+  <div role="tabpanel" class="tab-pane fade" id="reports">Reports</div>
 </div>
