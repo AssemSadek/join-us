@@ -20,6 +20,7 @@ var getAllUsers = function (req, res) {
 
   
 var signUp =  function(req,res){
+  console.log(req.body);
   con.query("INSERT INTO User VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
   , [req.body.username, req.body.fullName, req.body.email, req.body.password]
   , function (err, result) {
@@ -39,7 +40,6 @@ var login = function(req,res){
   con.query("SELECT Username,Type FROM User WHERE Username = ? and Password = ?"
   ,[req.body.username, req.body.password]
   ,function(err,result) {
-    console.log(result)
     if(err){
       console.log(err);
       res.status(500).send(err);

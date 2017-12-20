@@ -48,4 +48,8 @@ export class AppComponent {
     editProfile() {
         this._router.navigate(['edit-profile']);
     }
+
+    createEvent() {
+        this._router.navigate(['create-event']);
+    }
 }

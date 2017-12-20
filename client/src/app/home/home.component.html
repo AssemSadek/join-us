@@ -33,26 +33,22 @@
                             <h4 class="card-title">Hello! Sign up here</h4>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Full Name">
+                                <input type="text" class="form-control" placeholder="Full Name" #regFullNameValue>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" class="form-control" placeholder="Username" #regUsernameValue>
                             </div>
 
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                <input type="email" class="form-control" placeholder="Email Address" #regEmailValue>
                             </div>
 
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" class="form-control" placeholder="Password" #regPasswordValue>
                             </div>
 
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password">
-                            </div>
-
-                            <button class="btn btn-success btn-block">Register!</button>
+                            <button class="btn btn-success btn-block" (click)="register(regFullNameValue.value,regUsernameValue.value,regEmailValue.value,regPasswordValue.value)">Register!</button>
 
                         </div>
                     </div>

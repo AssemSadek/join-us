@@ -14,11 +14,12 @@ export class LoggedinComponent implements OnInit {
   public userInfo = null;
   res: string;
   public msg = "Not Specified";
+  public alt = "https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg";
   public eventsCreated: Observable<any>;
   public eventsAttended: Observable<any>;
-  currentEvents = null;
+  public currentEvents: Observable<any>;
+  public followers: Observable<any>;
   following = null;
-  followers = null;
   constructor(private authService: AuthenticationService,
               private coreService: CoreService) { 
   }
@@ -26,51 +27,7 @@ export class LoggedinComponent implements OnInit {
   ngOnInit() {
     this._initState();
 
-    this.currentEvents = [{
-      "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
-      "eventName": "Lana Del Rey",
-      "eventDescription": "bla bla bla bla",
-      "eventDate": "20/12/2017"
-    },
-    {
-      "photo": "https://9rm52pnjcvdzcxx3-zippykid.netdna-ssl.com/wp-content/uploads/2014/04/Lana-Del-Rey-coachella-photos.jpg",
-      "eventName": "Lana Del Rey",
-      "eventDescription": "bla bla bla bla",
-      "eventDate": "22/12/2017"
-    }];
-
     this.following = [{
-      "fullName": "Assem Amr Sadek",
-      "username": "AssemSadek",
-      "email": "assem@gmail.com"
-    },
-    {
-      "fullName": "Lana Tarek Chafik",
-      "username": "LanaChafik",
-      "email": "lana@gmail.com"
-    }];
-
-    this.followers = [{
-      "fullName": "Assem Amr Sadek",
-      "username": "AssemSadek",
-      "email": "assem@gmail.com"
-    },
-    {
-      "fullName": "Lana Tarek Chafik",
-      "username": "LanaChafik",
-      "email": "lana@gmail.com"
-    },
-    {
-      "fullName": "Assem Amr Sadek",
-      "username": "AssemSadek",
-      "email": "assem@gmail.com"
-    },
-    {
-      "fullName": "Lana Tarek Chafik",
-      "username": "LanaChafik",
-      "email": "lana@gmail.com"
-    },
-    {
       "fullName": "Assem Amr Sadek",
       "username": "AssemSadek",
       "email": "assem@gmail.com"
@@ -94,6 +51,8 @@ export class LoggedinComponent implements OnInit {
     this.userInfoObs.subscribe(data => this.userInfo = data);
     this.eventsCreated = this.getEventsCreated(this.res);
     this.eventsAttended = this.getEventsAttended(this.res);
+    this.currentEvents = this.getCurrentEvents(this.res);
+    this.followers = this.getFollowers(this.res);
   }
 
   getEventsCreated(username: string): Observable<any> {
@@ -102,5 +61,13 @@ export class LoggedinComponent implements OnInit {
 
   getEventsAttended(username: string): Observable<any> {
     return this.coreService.getEventsAttended(username);
+  }
+
+  getCurrentEvents(username: string): Observable<any> {
+    return this.coreService.getCurrentEvents(username);
+  }
+
+  getFollowers(username: string): Observable<any> {
+    return this.coreService.getFollowers(username);
   }
 }

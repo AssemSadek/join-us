@@ -13,6 +13,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { SearchComponent } from './search/search.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     LoggedinComponent,
     SearchComponent,
     UsersComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
