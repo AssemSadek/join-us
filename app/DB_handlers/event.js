@@ -51,9 +51,11 @@ var getIDbyTitle = function(req,res){
 
 
 var getEventInfo = function(req,res) {
-  con.query("SELECT * FROM eventWHERE ID = ?"
+  con.query("SELECT * FROM event WHERE ID = ?"
   ,[req.params.id]
   ,function (err,result){
+    console.log(err);
+    console.log(result);
     if(err){
       var resObject = {};
       resObject.m = "no event found";
@@ -126,9 +128,12 @@ var unattendEvent = function(req,res){
 };
 
 var getEventParticipants = function(req,res){
-  con.query("SELECT U.UserName,U.Image FROM User U,Attends A WHERE U.UserName = A.UN and A.EID=?"
+  console.log(req.params);
+  con.query("SELECT U.UserName,U.FullName,U.Image FROM User U,Attends A WHERE U.UserName = A.UN and A.EID=?"
   ,[req.params.id]
   ,function(err,result){
+    console.log(err);
+    console.log(result);
     if(err){
       var resObject = {};
       resObject.m = "can't unattend";

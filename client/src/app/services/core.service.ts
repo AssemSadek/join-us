@@ -64,6 +64,7 @@ export class CoreService {
     }
 
     getEventInfo(ID: string): Observable<any> {
+        console.log("henaaa");
         return this.http.get('/events/'+ ID).map(res => res.json());
     }
 
@@ -71,6 +72,7 @@ export class CoreService {
         return this.http.get('/getUserType/'+ username).map(res => res.json());
     }
 
+<<<<<<< HEAD
     attend(ID: string): Observable<any> {
         console.log(ID);
         return this.http.get("/attendEvent/"+ID).map(res => res.json());
@@ -80,4 +82,10 @@ export class CoreService {
         
         return this.http.get("/unattendEvent/"+ID).map(res => res.json());
     }
+=======
+    getParticipants(eventID: string): Observable<any> {
+        return this.http.get('/getEventParticipants/'+ eventID).map(res => res.json());
+    }
+
+>>>>>>> d3271e4c710bd039162b407f34855f848dddb77f
 }
