@@ -22,16 +22,26 @@ var getAllEvents = function (req, res) {
 
 
 var createEvent = function(req,res){
-  console.log(req.body);
-  console.log(req.userCookie);
   con.query("INSERT INTO event(Title, StartDate, EndDate, Description, Organizer, Category, Image, TicketPrice) values(?,?,?,?,?,?,?,?)"
   ,[req.body.title, req.body.startDate, req.body.endDate, req.body.description, req.userCookie.username, req.body.category, req.body.Image, req.body.ticketPrice]
   ,function(err,result){
-    console.log(err);
-    console.log(result);
     if(err){
       var resObject = {};
       resObject.m = "can't be created";
+    }
+    else {
+      res.send(result);
+    }
+  });
+};
+
+var getIDbyTitle = function(req,res){
+  con.query("SELECT ID from event where Title = ?"
+  ,[req.params.title]
+  ,function(err,result){
+    if(err){
+      var resObject = {};
+      resObject.m = "can't find event";
     }
     else {
       res.send(result);
@@ -219,6 +229,7 @@ module.exports = {
   getAllEvents: getAllEvents,
 
   createEvent : createEvent,
+  getIDbyTitle : getIDbyTitle,
   getEventInfo : getEventInfo,
   updateEventInfo : updateEventInfo,
   deleteEvent : deleteEvent,

@@ -9,6 +9,7 @@ module.exports.route = function(app){
     app.post("/signUp", user.signUp);
     app.post("/login", user.login);
     app.post("/logout", user.logout);
+    app.get("/getUserType/:username", user.getUserType);
     app.get("/authenticate", user.authenticate);
     app.get("/users/:username", user.getUserInfo);
     app.post("/updateUserInfo", user.updateUserInfo);
@@ -30,6 +31,7 @@ module.exports.route = function(app){
     app.get("/events", event.getAllEvents);
     
     app.post("/createEvent", event.createEvent);
+    app.get("/getIDbyTitle/:title", event.getIDbyTitle);
     app.get("/events/:id", event.getEventInfo);
     app.post("/updateEvent/", event.getAllEvents);
     app.delete("/deleteEvent/:id", event.deleteEvent);
