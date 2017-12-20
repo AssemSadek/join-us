@@ -35,14 +35,14 @@ export class EventsComponent implements OnInit {
     return this.coreService.getEvents();
   }
 
-  viewEvent(event) {
-    console.log(event);
-    // let navigationExtras: NavigationExtras = {
-    //   queryParams: {
-    //       "title": title
-    //   }
-    // };
-    //this.router.navigate(['view-event'], navigationExtras);
+  viewEvent(title: string) {
+    console.log(title);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          "title": title
+      }
+    };
+    this.router.navigate(['view-event'], navigationExtras);
   }
 
 }

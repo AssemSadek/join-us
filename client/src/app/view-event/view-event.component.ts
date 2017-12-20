@@ -11,6 +11,8 @@ import { Title } from '@angular/platform-browser/src/browser/title';
 })
 export class ViewEventComponent implements OnInit {
   public ID: Observable<string>;
+  public eventInfo: Observable<string>;
+  slt: string = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
   public title: string;
   
   constructor(private coreService: CoreService,
@@ -21,7 +23,11 @@ export class ViewEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.title);
+    this.ID = this.coreService.GetEventID(this.title);
+    this.ID.subscribe(data => {console.log(data[0]["ID"]);
+                              this.eventInfo = this.coreService.getEventInfo(data[0]["ID"]);
+                              console.log(this.eventInfo);
+                            });
   }
 
 }
