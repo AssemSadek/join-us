@@ -26,7 +26,7 @@ var signUp =  function(req,res){
   , function (err, result) {
     if (err) {
       console.log(err);
-      res.status(500).send(err);
+      res.send(err);
     } 
     else {
       res.send(result);

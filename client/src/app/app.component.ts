@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
 import { Observable } from 'rxjs/Observable';
 import {Router, NavigationExtras} from "@angular/router";
+import { CoreService } from './services/core.service';
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
     public isLoggedIn: Observable<boolean>;
 
     constructor(private _authService: AuthenticationService,
+                private coreService: CoreService,
                 private _router: Router) { }
 
     public ngOnInit(): void {
@@ -22,6 +24,7 @@ export class AppComponent {
 
     public signOut(): void {
         this._authService.logout();
+        this.coreService.logout();
     }
 
     /**
@@ -52,4 +55,5 @@ export class AppComponent {
     createEvent() {
         this._router.navigate(['create-event']);
     }
+
 }

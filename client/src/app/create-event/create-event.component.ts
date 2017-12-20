@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CoreService } from '../services/core.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-create-event',
@@ -7,20 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  public response: Observable<any>;
+  constructor(private router: Router,
+              private coreService: CoreService) {
+              }
 
   ngOnInit() {
   }
 
   createEvent(title: string, startDate: string, endDate: string, description: string, category: string, image: string, ticket: string) {
     console.log(title);
-    console.log(startDate);
-    console.log(endDate);
-    console.log(description);
-    console.log(category);
-    console.log(image);
-    console.log(ticket);
+    this.response = this.coreService.createEvent(title,startDate,endDate,description,category,image,ticket);
+    this.response.subscribe(data => console.log(data));
     this.router.navigate(['loggedin']);
   }
 

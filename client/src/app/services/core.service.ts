@@ -41,11 +41,18 @@ export class CoreService {
         return this.http.post('/signUp', {"username": username, "fullName": fullName, "email": email, "password": password}).map(res => res.json());
     }
 
+    createEvent(title: string, startDate: string, endDate: string, description: string, category: string, image: string, ticketPrice: string): Observable<any> {
+        console.log(title);
+        return this.http.post('/createEvent', {"title": title, "startDate": startDate, "endDate": endDate, "description": description, "category": category, "image": image, "ticketPrice": ticketPrice}).map(res => res.json());
+    }
     getFollowers(username: string): Observable<any> {
         return this.http.get('/userFollowers/' + username).map(res => res.json());
     }
 
     getFollowing(username: string): Observable<any> {
         return this.http.get('/userFollowing/' + username).map(res => res.json());
+    }
+    logout(): Observable<any> {
+        return this.http.post('/logout/', {}).map(res => res.json());
     }
 }
