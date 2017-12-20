@@ -44,4 +44,8 @@ export class CoreService {
     getFollowers(username: string): Observable<any> {
         return this.http.get('/userFollowers/' + username).map(res => res.json());
     }
+
+    getFollowing(username: string): Observable<any> {
+        return this.http.get('/userFollowing/' + username).map(res => res.json());
+    }
 }

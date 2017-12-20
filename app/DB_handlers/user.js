@@ -181,7 +181,7 @@ var getCurrentEvents = function(req,res){
  };
 
 var getUserFollowers = function(req,res){
-  con.query("SELECT User.Username User.FullName User.Image  FROM User, Follows WHERE User.Username = follows.Follower AND Followed = ?"
+  con.query("SELECT User.Username, User.FullName, User.Image  FROM User, Follows WHERE User.Username = follows.Follower AND Followed = ?"
   ,[req.params.username]
   ,function(err,result){
     if(err){
@@ -200,7 +200,7 @@ var getUserFollowers = function(req,res){
 };
 
 var getUserFollowing = function(req,res){
-  con.query("SELECT User.Username User.FullName User.Image FROM User,Follows WHERE User.Username = follows.Followed AND Follower = ?"
+  con.query("SELECT User.Username, User.FullName, User.Image FROM User,Follows WHERE User.Username = follows.Followed AND Follower = ?"
   ,[req.params.username]
   ,function(err,result){
     if(err){

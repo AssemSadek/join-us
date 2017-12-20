@@ -19,24 +19,13 @@ export class LoggedinComponent implements OnInit {
   public eventsAttended: Observable<any>;
   public currentEvents: Observable<any>;
   public followers: Observable<any>;
-  following = null;
+  public following: Observable<any>;
   constructor(private authService: AuthenticationService,
               private coreService: CoreService) { 
   }
 
   ngOnInit() {
     this._initState();
-
-    this.following = [{
-      "fullName": "Assem Amr Sadek",
-      "username": "AssemSadek",
-      "email": "assem@gmail.com"
-    },
-    {
-      "fullName": "Lana Tarek Chafik",
-      "username": "LanaChafik",
-      "email": "lana@gmail.com"
-    }];
   }
 
   /**
@@ -53,6 +42,7 @@ export class LoggedinComponent implements OnInit {
     this.eventsAttended = this.getEventsAttended(this.res);
     this.currentEvents = this.getCurrentEvents(this.res);
     this.followers = this.getFollowers(this.res);
+    this.following = this.getFollowing(this.res);
   }
 
   getEventsCreated(username: string): Observable<any> {
@@ -69,5 +59,9 @@ export class LoggedinComponent implements OnInit {
 
   getFollowers(username: string): Observable<any> {
     return this.coreService.getFollowers(username);
+  }
+
+  getFollowing(username: string): Observable<any> {
+    return this.coreService.getFollowing(username);
   }
 }

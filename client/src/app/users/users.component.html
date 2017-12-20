@@ -8,10 +8,10 @@
     <div class="row">
         <div class="col-md-4" *ngFor="let user of users | async">
             <div class="card">
-                <img class="card-img-top" src="{{user.Image}}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
+                <img class="card-img-top" src="{{ user.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
                 <div class="card-body">
-                    <h4 class="card-title">{{ user.FullName}}</h4>
-                    <p class="card-text">{{ user.UserName}}</p>
+                    <h4 class="card-title">{{ user.FullName }}</h4>
+                    <p class="card-text">{{ user.UserName }}</p>
                 </div>
             </div>
         </div>

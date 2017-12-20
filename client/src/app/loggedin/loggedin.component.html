@@ -91,34 +91,28 @@
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="following">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Full Name</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let f of following">
-          <td>{{ f.fullName }}</td>
-          <td>{{ f.username }}</td>
-          <td>{{ f.email }}</td>
-          <td><a href="">Unfollow</a></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let f of following | async">
+        <div class="card">
+          <img class="card-img-top" src="{{ f.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
+          <div class="card-body">
+            <h4 class="card-title">{{ f.FullName }}</h4>
+            <p class="card-text">{{ f.UserName }}</p>
+            <a href="#" class="btn btn-primary">Unfollow</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="followers">
     <div class="row">
-      <div class="col-md-4" *ngFor="let follower of followers | async">
+      <div class="col-sm-4" *ngFor="let follower of followers | async">
           <div class="card">
-              <img class="card-img-top" src="{{follower.Image}}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
+              <img class="card-img-top" src="{{ follower.Image }}" onerror="this.error=null;this.src='https://image.freepik.com/free-icon/male-profile-user-shadow_318-40244.jpg'">
               <div class="card-body">
-                  <h4 class="card-title">{{ follower.FullName}}</h4>
-                  <p class="card-text">{{ follower.UserName}}</p>
+                  <h4 class="card-title">{{ follower.FullName }}</h4>
+                  <p class="card-text">{{ follower.UserName }}</p>
               </div>
           </div>
       </div>

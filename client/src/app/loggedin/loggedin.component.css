@@ -8,7 +8,8 @@
     height: 600px;
   }
 .col-sm-4 {
-padding-bottom: 15px;
+    padding-bottom: 15px;
+    margin-left: 15px;
 }
 .col-lg-6 {
     max-width: 100%;
@@ -108,4 +109,12 @@ padding-bottom: 15px;
 }
 label {
     padding-left: 15px;
+}
+.col-md-4 {
+    margin-bottom: 15px;
+    margin-left: 15px;
+}
+.card-img-top {
+    width: 348.5px;
+    height: 250px;
 }
