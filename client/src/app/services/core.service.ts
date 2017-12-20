@@ -53,7 +53,7 @@ export class CoreService {
         return this.http.get('/userFollowing/' + username).map(res => res.json());
     }
 
-    GetEventID(title: string): Observable<any> {
+    getEventID(title: string): Observable<any> {
         return this.http.get('/getIDbyTitle/' + title).map(res => res.json());
     }
 
@@ -62,10 +62,16 @@ export class CoreService {
     }
 
     getEventInfo(ID: string): Observable<any> {
+        console.log("henaaa");
         return this.http.get('/events/'+ ID).map(res => res.json());
     }
 
     getUserType(username: string): Observable<any> {
         return this.http.get('/getUserType/'+ username).map(res => res.json());
     }
+
+    getParticipants(eventID: string): Observable<any> {
+        return this.http.get('/getEventParticipants/'+ eventID).map(res => res.json());
+    }
+
 }
