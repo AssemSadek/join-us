@@ -21,7 +21,7 @@ var getAllUsers = function (req, res) {
   
 var signUp =  function(req,res){
   console.log(req.body);
-  con.query("INSERT INTO User(username,fullname,email,password) values(?,?,?,?)"
+  con.query("INSERT  User(username,fullname,email,password) values(?,?,?,?)"
   , [req.body.username, req.body.fullName, req.body.email, req.body.password]
   , function (err, result) {
     console.log(result);

@@ -96,6 +96,7 @@ var deleteEvent = function(req,res){
 
 
 var attendEvent = function(req,res){
+  console.log("attend backend");
   console.log(req.userCookie);
   console.log(req.params);
   con.query("INSERT INTO attends(UN,EID) VALUES(?,?) "
@@ -164,9 +165,12 @@ var addComment = function (req,res) {
 };
 
 var getEventComments = function (req,res) {
-  con.query("SELECT * FROM comment EID =? ORDER BY ID DESC"
+  console.log(req.params);
+  con.query("SELECT * FROM comment WHERE CEID =? ORDER BY CID DESC"
   ,[req.params.id]
   ,function(err,result){
+    console.log(err);
+    console.log(result);
     if(err){
         var resObject = {};
         resObject.m = "can't get comments";
@@ -217,8 +221,11 @@ var getEventReports = function (req,res) {
 };
 
 var getAllReports = function (req,res) {
-  con.query("SELECT E.Title, R.RUN, R.Problem FROM Report R Event E WHERE E.ID = R.REID  ORDER BY R.ID DESC"
+  console.log("3and Assem");
+  con.query("SELECT E.Title, R.RUN, R.Problem FROM Report R, Event E WHERE E.ID = R.REID  ORDER BY R.RID DESC"
   ,function(err,result){
+    console.log(err);
+    console.log(result);
     if(err){
       var resObject = {};
       resObject.m = "can't get reports";
