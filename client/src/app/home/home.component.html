@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#signin">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#signup">Sign up</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="signin">
+                        <div class="card-body">
+                            <h4 class="card-title">Welcome back!</h4>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Username" #usernameValue>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" #passwordValue (keyup.enter)="logIn(usernameValue.value, passwordValue.value)">
+                            </div>
+
+                            <button class="btn btn-success btn-block" (click)="logIn(usernameValue.value, passwordValue.value)">Login!</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="signup">
+                        <div class="card-body">
+                            <h4 class="card-title">Hello! Sign up here</h4>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Full Name" #regFullNameValue>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Username" #regUsernameValue>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email Address" #regEmailValue>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" #regPasswordValue (keyup.enter)="register(regFullNameValue.value,regUsernameValue.value,regEmailValue.value,regPasswordValue.value)">
+                            </div>
+
+                            <button class="btn btn-success btn-block" (click)="register(regFullNameValue.value,regUsernameValue.value,regEmailValue.value,regPasswordValue.value)">Register!</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="alertMsg" class="alert alert-danger" role="alert">
+    <strong>Error !</strong> Please check your username or password ..
+</div>
