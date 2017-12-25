@@ -76,6 +76,22 @@
   
 
   <div role="tabpanel" class="tab-pane fade" id="comments">
+    <div class="container">         
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comment of eventComments">
+              <td>{{ comment.CUN }}</td>
+              <td>{{ comment.Content }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
 </div>
   

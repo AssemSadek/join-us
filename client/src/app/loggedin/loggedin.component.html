@@ -153,5 +153,25 @@
   </div>
 
   <div role="tabpanel" class="tab-pane fade" id="recommended">Recommended for you</div>
-  <div role="tabpanel" class="tab-pane fade" id="reports">Reports</div>
+  <div role="tabpanel" class="tab-pane fade" id="reports">
+    <div class="container">         
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Reporter</th>
+            <th>Problem</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reports | async">
+            <td>{{ report.Title }}</td>
+            <td>{{ report.RUN }}</td>
+            <td>{{ report.Problem }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
 </div>

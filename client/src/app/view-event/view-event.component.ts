@@ -14,6 +14,8 @@ export class ViewEventComponent implements OnInit {
   public eventInfoObs: Observable<string>;
   public eventParticipantsObs: Observable<string>;
   public eventParticipants;
+  public eventCommentsObs: Observable<string>;
+  public eventComments;
   public eventInfo;
   slt: string = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
   public title: string;
@@ -31,6 +33,9 @@ export class ViewEventComponent implements OnInit {
 
     this.eventParticipantsObs = this.coreService.getEventID(this.title).flatMap(data => this.coreService.getParticipants(data[0]["ID"]));
     this.eventParticipantsObs.subscribe(data => this.eventParticipants = data);
+
+    this.eventCommentsObs = this.coreService.getEventID(this.title).flatMap(data => this.coreService.getEventComments(data[0]["ID"]));
+    this.eventCommentsObs.subscribe(data => this.eventComments = data);
   }
 
 }

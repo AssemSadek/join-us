@@ -23,6 +23,7 @@ export class LoggedinComponent implements OnInit {
   public currentEvents: Observable<any>;
   public followers: Observable<any>;
   public following: Observable<any>;
+  public reports: Observable<any>;
   constructor(private authService: AuthenticationService,
               private coreService: CoreService) { 
   }
@@ -51,7 +52,8 @@ export class LoggedinComponent implements OnInit {
                                         this.adminFlag.next(true);
                                       }
                                       this.adminFlagObs = this.adminFlag.asObservable();
-                                    })                               
+                                    })
+    this.reports = this.getReports();                               
   }
 
   getEventsCreated(username: string): Observable<any> {
@@ -72,5 +74,9 @@ export class LoggedinComponent implements OnInit {
 
   getFollowing(username: string): Observable<any> {
     return this.coreService.getFollowing(username);
+  }
+
+  getReports(): Observable<any> {
+    return this.coreService.getReports();
   }
 }

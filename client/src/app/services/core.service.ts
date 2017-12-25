@@ -74,16 +74,29 @@ export class CoreService {
 
     attendEvent(ID: string): Observable<any> {
         console.log(ID);
-        return this.http.get('/attendEvent/'+ ID).map(res => res.json());
+        console.log("gowa attend");
+        return this.http.get('/attendEvent/' + ID).map(res => res.json());
     }
 
     unattend(ID: string): Observable<any> {
         
         return this.http.get("/unattendEvent/"+ID).map(res => res.json());
     }
+    
     getParticipants(eventID: string): Observable<any> {
         console.log("ammm hereeeeeeee");
         return this.http.get('/getEventParticipants/'+ eventID).map(res => res.json());
     }
+
+    getReports(): Observable<any> {
+        console.log("ammm hereeeeeeee too");
+        return this.http.get('/getAllReports').map(res => res.json());
+    }
+
+    getEventComments(ID: string): Observable<any> {
+        console.log("I ammm hereeeeeeee");
+        return this.http.get('/getEventComments/' + ID).map(res => res.json());
+    }
+
 
 }
